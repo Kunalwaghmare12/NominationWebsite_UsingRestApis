@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nominee Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image :url("https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+			background-size: cover; /* Ensures the background image covers the entire screen */
+            background-position: center; 
+            backdrop-filter:blur(5px);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+        form {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease;
+            background-color: #f9f9f9;
+        }
+        input:focus, select:focus {
+            border-color: #6c7dff;
+            outline: none;
+        }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M303.1 139.1L184.6 257.6c-4.7 4.7-12.3 4.7-17 0L16.9 139.1C7.6 129.8 0 139.6 0 150.3V160c0 6.6 5.4 12 12 12h24c6.6 0 12-5.4 12-12v-46.9l140.6 140.7c4.7 4.7 12.3 4.7 17 0l140.6-140.7V160c0 6.6 5.4 12 12 12h24c6.6 0 12-5.4 12-12v-9.7c0-10.7-7.6-20.5-16.9-21.2z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+            background-size: 20px auto;
+            cursor: pointer;
+        }
+        .other-activity {
+            display: none;
+        }
+        button {
+            background-color: #6c7dff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #4d53e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nominee Form</h1>
+        
+        <form action="/form" method="post">
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <select id="sex" name="sex" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nomination">Nomination:</label>
+                <select id="nomination" name="activity" onchange="showOtherActivity(this.value)" required>
+                    <option value="">Select Activity</option>
+                    <option value="singing">Singing</option>
+                    <option value="dancing">Dancing</option>
+                    <option value="fashion show">Fashion Show</option>
+                    <option value="others">Others</option>
+                </select>
+                <input type="text" id="otherActivity" name="activity" class="other-activity" placeholder="Enter Other Activity">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function showOtherActivity(value) {
+            var otherActivityInput = document.getElementById("otherActivity");
+            if (value === "others") {
+                otherActivityInput.style.display = "block";
+                otherActivityInput.setAttribute("required", "required");
+            } else {
+                otherActivityInput.style.display = "none";
+                otherActivityInput.removeAttribute("required");
+            }
+        }
+    </script>
+</body>
+</html>
